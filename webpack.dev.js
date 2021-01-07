@@ -8,7 +8,7 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.join(__dirname, 'src'),
     port: 8080,
-    host: '0.0.0.0',
+    // host: '0.0.0.0',
     hot: true
   }
 })

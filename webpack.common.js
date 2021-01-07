@@ -3,21 +3,20 @@ const HtmlPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ImageminPlugin = require('imagemin-webpack-plugin').default
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+console.log("版本==>", process.env.NODE_ENV)
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: ['./js/main.js'],
   // mode: 'none', // none development production
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'game.min.[hash:8].js',
+    filename: process.env.NODE_ENV == 'production' ? 'game.min.[hash:8].js' : 'game.js',
   },
   target: 'web',
-  
   plugins: [
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      { from: 'assets/',to:'assets/'}
+      { from: 'images/',to:'images/'}
     ], {
       ignore: [],
       debug:'debug',
